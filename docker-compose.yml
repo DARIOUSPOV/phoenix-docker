@@ -1,0 +1,14 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:9.4
+  web:
+    build: .
+    ports:
+    - "4000:4000"
+    volumes:
+    - .:/app
+    depends_on:
+    - postgres
+    working_dir: /app/hello_phoenix
+    command: mix phoenix.server
